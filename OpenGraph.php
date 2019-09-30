@@ -123,13 +123,13 @@
                 "user"      => $_SERVER['HTTP_USER_AGENT']
             );
 
-            //Added by Luke Wilson, Sept 2019
+            //Added by Luke Wilson, Sept 2019 -- certain website react differently depending on which robot UA it detects, so not all the meta tags get returned in some cases
             if(preg_match('/(facebook|wish)/', strtolower($URI))) {
                 $userAgent = $UAarry['user'];
-            } elseif(preg_match('/(amazon|youtu|missguided|chaturbate)/', $URI)) {
+            } elseif(preg_match('/(amazon|youtu|missguided)/', $URI)) {
                 $userAgent = $UAarry['facebook'];
             } else {
-                $userAgent = $UAarry['google'];
+                $userAgent = $UAarry['google']; //generally the Googlebot gets all the info
             }
 
             //cURL function modified based on https://stackoverflow.com/q/42395874/1235692
